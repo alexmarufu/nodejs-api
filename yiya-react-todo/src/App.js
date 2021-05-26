@@ -82,15 +82,13 @@ function App() {
     setText("")
   }
 
-const deleteItem = (source) => {
+const deleteItem = (index) => {
 
   setState(prev => {
     prev = {...prev}
   
-    prev["todo"].items.splice(source.id, 1)
-    //prev["todo"].items.filter(item => item.id != source.id)
-    //prev["done"].items.splice(source.index, 1)
-
+    prev["todo"].items.splice(index, 1)
+    
     return prev
 
     
@@ -130,7 +128,7 @@ const deleteItem = (source) => {
                                   {...provided.dragHandleProps}
                                 >
                                   {item.name}
-                                  <button onClick={() => deleteItem(item)}>delete</button>
+                                  <button onClick={() => deleteItem(index)}>delete</button>
                                 </div>
                               )
                             }}
