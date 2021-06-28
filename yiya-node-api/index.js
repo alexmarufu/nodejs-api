@@ -78,17 +78,6 @@ app.get("/orders", (req, res) => {
 });
 
 
-app.get("/orders?page=:page=:limit", (req, res) => {
-  db.query("SELECT * FROM sims", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-
-
 
 app.put("/order/:id", (req, res) => {
   const id = req.params.id;
@@ -106,7 +95,19 @@ app.put("/order/:id", (req, res) => {
   );
 });
 
+/*
+app.get("/orders?page=:page=:limit", (req, res) => {
+  db.query("SELECT * FROM sims", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
+
+*/
 
 /*
 app.delete("/delete/:id", (req, res) => {
