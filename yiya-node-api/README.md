@@ -1,4 +1,4 @@
-## set up
+## Set Up
 - install nodejs on your computer from  ``https://nodejs.org/en/download/``
 
 ## installing php (for msql database connection if you're running locally)
