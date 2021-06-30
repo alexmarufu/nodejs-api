@@ -10,10 +10,10 @@ app.get('/', (req, res)=>{
 });
 
 const db = mysql.createConnection({
-  user: "",
-  host: "",
-  password: "",
-  database: "",
+  host            : 'localhost',
+  user            : 'root',
+  password        : 'samsungrules',
+  database        : 'yiya_project'
 })
 
 db.connect((error) => {
@@ -21,19 +21,21 @@ db.connect((error) => {
     console.log(error);
   } else {
     console.log('Database Connected Successfully!!!');
-   }
-  
+   } 
 })
 
 
 app.post("/orders", (req, res) => {
  
-  const { simId, customerId, status, deliveryAddress} = req.body
+  const { simId, customerId, status } = req.body
   
-  const createdAt = new Date().toISOString();
+   const userAddress = req.body.deliveryAddress;
+
+   const deliveryAddress = JSON.stringify(userAddress)
+
   db.query(
-    `INSERT INTO orders (simId, customerId, status, deliveryAddress, createdAt) VALUES (?,?,?,?,?)`,
-    [simId, customerId, status, deliveryAddress, createdAt],
+    `INSERT INTO orders (simId, customerId, status, deliveryAddress) VALUES (?,?,?,?)`,
+    [simId, customerId, status, deliveryAddress],
     (err, result) => {
      if (err) {
         res.json({success: false, error: err});
@@ -48,6 +50,38 @@ app.post("/orders", (req, res) => {
   );
 });
 
+
+
+app.post("/sim-cards", (req, res) => {
+ 
+  const name = req.body.name
+  
+  db.query(
+    `INSERT INTO sims (simId) VALUES (?)`,
+    [name],
+    (err, result) => {
+     if (err) {
+        res.json({success: false, error: err});
+     } else {
+       res.status(200).json({
+         success: true,
+         result
+         });
+     }
+    }
+  );
+});
+
+/**{
+    "simId": "",
+    "customerId": "",
+    "status": "pending",
+    "deliveryAddress": {
+        "city": "johannesburg",
+        "country": "south africa"
+    }
+
+} */
 
 app.get("/sim-cards", (req, res) => {
   db.query("SELECT * FROM sims", (err, result) => {
