@@ -1,7 +1,7 @@
 ## set up
 - install nodejs on your computer from  ``https://nodejs.org/en/download/``
 
-## installing php
+## installing php (for msql database connection if you're running locally)
 - Step 1: Download the PHP files. Get the latest PHP 8 x64 Thread Safe ZIP package from ``https://www.php.net/downloads.php.``
 - Step 2: Extract the files. ...
 - Step 3: Configure php. ...
