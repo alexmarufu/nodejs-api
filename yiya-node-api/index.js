@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
+const { v4: uuidv4 } = require('uuid');
 
 app.use(express.json());
 
@@ -9,6 +10,9 @@ app.get('/', (req, res)=>{
   res.send('Hello yiya');
 });
 
+
+
+//creating connection for mysql database
 const db = mysql.createConnection({
   host            : 'localhost',
   user            : 'root',
@@ -16,19 +20,23 @@ const db = mysql.createConnection({
   database        : 'yiya_project'
 })
 
+
+//handling connection response
 db.connect((error) => {
   if(error) {
     console.log(error);
   } else {
-    console.log('Database Connected Successfully!!!');
+    console.log('Database Connected Successfully!');
    } 
 })
 
-
+//post an order
 app.post("/orders", (req, res) => {
  
-  const { simId, customerId, status } = req.body
+  const { simId, status } = req.body
   
+  const customerId = uuidv4()
+
    const userAddress = req.body.deliveryAddress;
 
    const deliveryAddress = JSON.stringify(userAddress)
@@ -51,13 +59,13 @@ app.post("/orders", (req, res) => {
 });
 
 
-
+//post a sim-card
 app.post("/sim-cards", (req, res) => {
  
   const name = req.body.name
   
   db.query(
-    `INSERT INTO sims (simId) VALUES (?)`,
+    `INSERT INTO sims (name) VALUES (?)`,
     [name],
     (err, result) => {
      if (err) {
@@ -72,17 +80,8 @@ app.post("/sim-cards", (req, res) => {
   );
 });
 
-/**{
-    "simId": "",
-    "customerId": "",
-    "status": "pending",
-    "deliveryAddress": {
-        "city": "johannesburg",
-        "country": "south africa"
-    }
 
-} */
-
+//get all sim-cards
 app.get("/sim-cards", (req, res) => {
   db.query("SELECT * FROM sims", (err, result) => {
     if (err) {
@@ -98,6 +97,8 @@ app.get("/sim-cards", (req, res) => {
 
 
 
+//get all orders
+
 app.get("/orders", (req, res) => {
   db.query("SELECT * FROM orders", (err, result) => {
     if (err) {
@@ -112,22 +113,24 @@ app.get("/orders", (req, res) => {
 });
 
 
+//update an order
 
 app.put("/order/:id", (req, res) => {
-  const id = req.params.id;
   const status = req.body.status;
-  db.query(`UPDATE orders SET status = ${status} WHERE id = ${id}`,
+  db.query(`UPDATE orders SET status = '${status}' WHERE id = ${req.params.id}`,
     (err, result) => {
       if (err) {
         res.json({success: false, error: err});
      } else {
        res.status(200).json({
-         success: true,
+         success: true
          });
      }
     }
   );
 });
+
+
 
 /*
 app.get("/orders?page=:page=:limit", (req, res) => {
@@ -139,22 +142,8 @@ app.get("/orders?page=:page=:limit", (req, res) => {
     }
   });
 });
-
-
 */
 
-/*
-app.delete("/delete/:id", (req, res) => {
-  const id = req.params.id;
-  db.query(`DELETE FROM sims WHERE id = ${id}`, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
-    }
-  });
-});
-*/
 
 const port = process.env.PORT || 3000
 
