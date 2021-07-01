@@ -22,7 +22,7 @@
 
 
 - POST orders request
-<a href="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-orders-request.png?raw=true"><img src="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-orders-request.png?raw=true" alt="Screen_Shot_" ></a>
+<a href="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/post-orders-request.png?raw=true"><img src="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/post-orders-request.png?raw=true" alt="Screen_Shot_" ></a>
 
 - GET orders request
 <a href="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-orders-request.png?raw=true"><img src="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-orders-request.png?raw=true" alt="Screen_Shot_"></a>
