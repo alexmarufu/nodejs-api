@@ -50,7 +50,7 @@ app.post("/orders", (req, res) => {
      } else {
        res.status(200).json({
          success: true,
-         orderId: "1",
+         orderId: uuidv4(),
          status: "Pending"
          });
      }
@@ -101,6 +101,7 @@ app.get("/sim-cards", (req, res) => {
 
 app.get("/orders", (req, res) => {
   db.query("SELECT * FROM orders", (err, result) => {
+    
     if (err) {
       res.json({success: false, error: err});
    } else {
