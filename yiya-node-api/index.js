@@ -13,11 +13,13 @@ app.get('/', (req, res)=>{
 
 
 //creating connection for mysql database
+
+// add your own database connection details 
 const db = mysql.createConnection({
-  host            : 'localhost',
-  user            : 'root',
-  password        : 'samsungrules',
-  database        : 'yiya_project'
+  host            : '',
+  user            : '',
+  password        : '',
+  database        : ''
 })
 
 
