@@ -17,7 +17,7 @@
 4) then run ``npm start`` to start the project
 
 
-- GET sim-cars request
+- GET sim-cards request
 <a href="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-simcards-request.png?raw=true"><img src="https://github.com/alexmarufu/yiya-projects/blob/master/yiya-node-api/postman-tests/postman-respones-images/get-simcards-request.png?raw=true" alt="Screen_Shot_"></a>
 
 
