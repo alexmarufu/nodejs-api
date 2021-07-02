@@ -136,8 +136,8 @@ app.put("/order/:id", (req, res) => {
 
 
 /*
-app.get("/orders?page=:page=:limit", (req, res) => {
-  db.query("SELECT * FROM sims", (err, result) => {
+app.get("/orders/:limit", (req, res) => {
+  db.query(`SELECT * FROM orders LIMIT ${req.params.limit} `, (err, result) => {
     if (err) {
       console.log(err);
     } else {
