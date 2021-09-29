@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const { v4: uuidv4 } = require('uuid');
+const validateUser = require("./middle-ware");
 
 app.use(express.json());
 
@@ -33,7 +34,7 @@ db.connect((error) => {
 })
 
 //post an order
-app.post("/orders", (req, res) => {
+app.post("/orders", validateUser, (req, res) => {
  
   const { simId, status } = req.body
   
@@ -62,7 +63,7 @@ app.post("/orders", (req, res) => {
 
 
 //post a sim-card
-app.post("/sim-cards", (req, res) => {
+app.post("/sim-cards", validateUser, (req, res) => {
  
   const name = req.body.name
   
@@ -84,7 +85,7 @@ app.post("/sim-cards", (req, res) => {
 
 
 //get all sim-cards
-app.get("/sim-cards", (req, res) => {
+app.get("/sim-cards", validateUser, (req, res) => {
   db.query("SELECT * FROM sims", (err, result) => {
     if (err) {
        res.json({success: false, error: err});
@@ -101,7 +102,7 @@ app.get("/sim-cards", (req, res) => {
 
 //get all orders
 
-app.get("/orders", (req, res) => {
+app.get("/orders", validateUser, (req, res) => {
   db.query("SELECT * FROM orders", (err, result) => {
     
     if (err) {
@@ -118,7 +119,7 @@ app.get("/orders", (req, res) => {
 
 //update an order
 
-app.put("/order/:id", (req, res) => {
+app.put("/order/:id", validateUser, (req, res) => {
   const status = req.body.status;
   db.query(`UPDATE orders SET status = '${status}' WHERE id = ${req.params.id}`,
     (err, result) => {
@@ -136,7 +137,7 @@ app.put("/order/:id", (req, res) => {
 
 
 
-app.delete("/:id", (req, res) => {
+app.delete("/:id", validateUser, (req, res) => {
   db.query(`SELECT * FROM orders LIMIT ${req.params.id} `, (err, result) => {
     if (err) {
       console.log(err);
@@ -148,7 +149,7 @@ app.delete("/:id", (req, res) => {
 
 
 
-const port = process.env.PORT || 3000
+const port = 3000
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
