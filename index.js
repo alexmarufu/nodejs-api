@@ -138,7 +138,7 @@ app.put("/order/:id", validateUser, (req, res) => {
 
 
 app.delete("/:id", validateUser, (req, res) => {
-  db.query(`SELECT * FROM orders LIMIT ${req.params.id} `, (err, result) => {
+  db.query(`DELETE FROM cart WHERE ID = ${req.params.id}`, (err, result) => {
     if (err) {
       console.log(err);
     } else {
