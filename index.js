@@ -7,7 +7,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res)=>{
-  res.send(`here's api key : ${uuidv4()},  make you include it in your body for every request you make`);
+  res.json({ apiKey: uuidv4(), message: " make you include it in your body for every request you make"});
 });
 
 
