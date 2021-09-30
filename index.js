@@ -7,7 +7,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res)=>{
-  res.json({ apiKey: uuidv4(), message: " make you include it in your body for every request you make"});
+  res.json({ apiKey: uuidv4(), message: " make sure you include it in your body for every request you make"});
 });
 
 
