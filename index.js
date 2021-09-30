@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
 const validateUser = require("./validateuser");
+const { v4: uuidv4 } = require('uuid');
 
 app.use(express.json());
 
 
 app.get('/', (req, res)=>{
-  res.send("HI");
+  res.send(`here's api key : ${uuidv4()},  make you include it in your body for every request you make`);
 });
 
 
@@ -18,7 +19,7 @@ app.post("/createcart", validateUser, (req, res) => {
   const { itemId, price } = req.body;
   const cartId = cart.length + 1
   const quantity = 1;
-  const userId = req.userId;
+  const userId = req.user.userId;
 
   const itemExist = cart.some(item  => item.itemId === itemId)
   const userCartExist = cart.some(item  => item.userId === userId)
