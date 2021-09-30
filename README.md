@@ -13,6 +13,8 @@
 8) To delete a cart use ``delete`` method to http://localhost:3000/cartdelete/:cartId
 9) Make sure you have ``userId`` and ``apikey`` within your body request, when making a request (userId can be any number)
 
+## getting api key
+<img src="https://github.com/alexmarufu/nodejs-api/blob/master/postman-tests/postman-respones-images/getting-api-key.png?raw=true">
 
 ## create cart response
 <img src="https://github.com/alexmarufu/nodejs-api/blob/master/postman-tests/postman-respones-images/post-respose.png?raw=true">
