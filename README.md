@@ -5,6 +5,11 @@
 
 1) Install dependencies using ``npm install``   
 2) then run ``npm start`` to start the project
+3) To create cart use ``post`` method to http://localhost:3000/createcart
+4) To get user cart use ``get`` method to http://localhost:3000/getcart/:userId
+5) To get all users carts use ``get`` method to http://localhost:3000/getallcarts
+6) To update a cart use ``put`` method to http://localhost:3000/cartupdate/:cartId
+7) To delete a cart use ``delete`` method to http://localhost:3000/cartdelete/:cartId
 
 
 ## create cart response
