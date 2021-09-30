@@ -10,6 +10,7 @@
 5) To get all users carts use ``get`` method to http://localhost:3000/getallcarts
 6) To update a cart use ``put`` method to http://localhost:3000/cartupdate/:cartId
 7) To delete a cart use ``delete`` method to http://localhost:3000/cartdelete/:cartId
+8) Make sure you have ``userId`` within your body request, when making a request (userId can be any number)
 
 
 ## create cart response
