@@ -1,18 +1,24 @@
+const jwt = require("jsonwebtoken");
 
 const requireLogin = (req, res, next) => {
 
-    const userId = req.body.userId;
-    const apikey = req.body.apikey;
-
-    if (!userId && !apikey) {
-       return res.status(400).json({ message: "userId and apikey required" });
-    } else if(userId && apikey) {
-         req.user = { userId, apikey };
+    const userToken = req.body.userToken;
+    const apiKey = req.body.apiKey;
+    if (!userToken && !apiKey) {
+       return res.status(400).json({ message: "userToken and apiKey are required" });
+    } else if(userToken && apiKey) {
+        const user = jwt.verify(userToken, "challengesecret", /*{expiresIn: "1d"}*/);
+        req.user = user;
+        console.log(user)
     } else {
-        return res.status(400).json({ message: "invalid userId or apikey " });
+        return res.status(400).json({ message: "invalid token or apiKey please signin at http//localhost:3000/signin or signup at http//localhost:3000/signin" });
     }
-    next();
-    
-  };
+    next();   
+ };
 
   module.exports = requireLogin
+
+    
+  
+  
+  
