@@ -11,8 +11,8 @@ app.use(express.json());
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "",
-    database: "",
+    password: "samsungrules",
+    database: "nodeapi",
   })
   
   db.connect((error) => {
@@ -45,8 +45,15 @@ app.post("/createcart", validateUser, (req, res) => {
   if(itemId === "" && price == "" && cartId === "") {
     res.json({error: "no blank spaces"});
   } else {
-    const sql = `SELECT * FROM cart`
-    db.query(sql, (err, result) => {
+    db.query("SELECT * FROM users", (err, result) => {
+      if(err) {
+       res.json({error: err});
+      } else {
+        const user = result.some(item => item.userId === req.user.userId);
+        const apikey = result.some(item => item.apikey === req.user.apikey);
+       if(user && apikey) {
+        const sql = `SELECT * FROM cart`
+        db.query(sql, (err, result) => {
          if(err) {
           res.json({error: err});
           } else {
@@ -62,8 +69,12 @@ app.post("/createcart", validateUser, (req, res) => {
            
          }
      });
+    }
+   }
+    });
   }
 });
+
 
 
 app.get("/getallcarts", validateUser, (req, res) => {
