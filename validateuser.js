@@ -11,7 +11,7 @@ const requireLogin = (req, res, next) => {
         req.user = user;
         console.log(user)
     } else {
-        return res.status(400).json({ message: "invalid token or apiKey please signin at http//localhost:3000/signin or signup at http//localhost:3000/signin" });
+        return res.status(400).json({ message: "invalid token or apiKey please get your apiKey at http//localhost:3000/ and signin at http//localhost:3000/signin or signup at http//localhost:3000/signin to get your userToken" });
     }
     next();   
  };
