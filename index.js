@@ -84,7 +84,7 @@ app.get("/getallcarts", validateUser, (req, res) => {
     } else {
       const user = result.some(item => item.userId === req.user.userId);
       const apikey = result.some(item => item.apikey === req.user.apikey);
-      //console.log(apikey);
+      console.log(apikey);
       if(user && apikey) {
       db.query("SELECT * FROM cart", (error, result) => {
         if(error) {
