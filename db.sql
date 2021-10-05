@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
    `itemId` varchar(250) NOT NULL,
    `price` int(250) NOT NULL,
    `quantity` int(250) NOT NULL,
-   `userId` int(250) NOT NULL,
+   `userId` varchar(250) NOT NULL,
    `cartId` varchar(250) NOT NULL,
    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
